@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -14,7 +15,11 @@ public class Venta {
     private Integer id;
 
     private LocalDateTime fecha;
+
     private Float total;
+
+    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL)
+    private List<ItemVenta> items;
 
     @ManyToOne
     @JoinColumn(name = "idusuario", referencedColumnName = "idusuario")
